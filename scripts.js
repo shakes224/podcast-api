@@ -1,1 +1,1 @@
-import  './components/api-example.js'
+import  './components/example-component.js'
