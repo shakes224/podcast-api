@@ -1,1 +1,1 @@
-import  './components/example-component.js'
+import  './modules/main.js'
