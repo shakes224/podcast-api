@@ -7,10 +7,9 @@
     <title>Podcast Project</title>
     <link rel="stylesheet" href="/styles.css">
     <!--added ***type="module"*** to avoid Uncaught SyntaxError: Can not import uotside a module-->
-    <script src="/scripts.js" type="module"></script> 
+    <script src="/scripts.js" defer type="module"></script> 
 </head>
 <body>
-    <h1>Podcast-Project</h1>
-    <div id="app"> Loading...</div>
+    <podcast-app></podcast-app><!--custom element-->
 </body>
 </html>
