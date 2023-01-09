@@ -1,14 +1,4 @@
 /**
- * @typedef {object} preview
- * @property {string} id
- * @property {string} title
- * @property {number} seasons
- * @property {string[]} image
- * @property {string} genres
- * @property {string} updated
- */
-
-/**
  * @returns {Promise<string>}
  */
 

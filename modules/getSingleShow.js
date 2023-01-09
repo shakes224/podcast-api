@@ -1,29 +1,3 @@
-/**
- * @typedef {object} episode
- * @property {number} episode
- * @property {string} decription
- * @property {string} title
- * @property {string} file
- */
-
-/**
- * @typedef {object} season
- * @property {string} season
- * @property {string} title
- * @property {number} image
- * @property {episode[]} episodes
- */
-
-/**
- * @typedef {object} show
- * @property {string} id
- * @property {string} title
- * @property {season[]} seasons
- * @property {string} image
- * @property {string} genres
- * @property {string} updated
- * 
- */
 
 /**
  * @param {string} id
