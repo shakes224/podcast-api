@@ -129,7 +129,6 @@ class Store {
         this.loadList()
     }
 }
-
 /**
  * 
  * @param {import('../types').subscription} fn 
