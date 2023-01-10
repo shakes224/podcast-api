@@ -1,53 +1,70 @@
 import {html, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js'
-
+import {store} from '../store.js'
 /**
  * @typedef {"list" | "single"} view
  */
 
 class Component extends LitElement {
-
     static get properties(){
         return{
-            active: {}, 
+            phase: { state: true }, 
         }
     }
-    constructor() {
+
+     /**
+     * store connectors below
+     */
+     constructor() {
         super()
-
-        /** @type {view} */
-        this.active = 'List'
+        this.pahse === 'loading'
+        const state = store.suscribe(this.storeChange)
+        this.storeChange(state)
     }
 
-    loadSingle()
-    {
-        this.acctive = 'single'
+    /**
+     * 
+     * @param {import('../types').state} state 
+     */
+
+    storeChange = (state) => {
+        if(this.phase === state.phase) return
+        this.pahse = state.phase 
+
     }
 
-    loadList()
-    {
-        this.acctive = 'list'
+    disconnectedCallback() {
+        store.unsuscribe(this.storeChange)
     }
-    
+
     render(){
-        if(this.active === 'list'){
+        switch(this.phase) {
+            case 'loading': return html  `<div>Loading...</div>`
+            case 'error': return html  `<div>Loading...</div>`
+            case 'list': return html  `<div>Loading...</div>`
+            case 'single': return html  `<div>Loading...</div>`
+            default: throw new Error('Ínvalid phase')
+        }
+        
+        // const loadSingleHandler = () => store.loadSingle('10182')
+        // const loadListeHandler = () => store.loadList()
+
+        if (this.pahse === 'loading'){
+            return html `<div>Loading...</div>`
+        }
+
+        if(this.phase === 'error'){
+            return html `<div>Something went wrong!</div>`
+        }
+
+        if(this.pahse === 'list'){
             return html `
                 <div>
-                    <button @click = "${this.loadList}"> Go to list</button>
+                    <button @click = "${store.laodSingle}"> Go to list</button>
                     <podcast-view-list></podcast-view-list> 
                 </div>`
         }
-
-        if(this.active == 'single'){
-            return html `
-                <div> 
-                    <button @click = "${this.loadSingle}"> Go to single</button>
-                    <podcast-view-list></podcast-view-single>
-                </div>`
-            throw new Error('Invalid view active')
-        }
-
+        throw new Error('Invalid view active')
     }
-
 }
 
 customElements.define('podcast-app', Component)
